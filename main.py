@@ -40,7 +40,7 @@ def download_audio(youtube_url, output_file_name="audio", browser="chrome"):
             'preferredcodec': 'mp3',
             'preferredquality': '192',
         }],
-        'cookies': os.getenv("COOKIES") 
+        'cookiefile': 'cookies.txt'
     }
 
     with YoutubeDL(ydl_opts) as ydl:
