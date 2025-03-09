@@ -39,7 +39,8 @@ def download_audio(youtube_url, output_file_name="audio", browser="chrome"):
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
             'preferredquality': '192',
-        }]
+        }],
+        'cookies': os.getenv("COOKIES") 
     }
 
     with YoutubeDL(ydl_opts) as ydl:
@@ -77,3 +78,12 @@ def process_video(request: VideoRequest):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+
+def start():
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
+
+if __name__ == "__main__":
+    start()
